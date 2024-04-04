@@ -9,7 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  firebase_core: ^2.27.0
+  firebase_messaging: ^14.7.19
   flutter_inappwebview: ^6.0.0
+  flutter_local_notifications: ^17.0.0
   get: ^4.6.6
   url_launcher: ^6.2.5
 
