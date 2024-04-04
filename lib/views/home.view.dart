@@ -21,7 +21,7 @@ class HomeView extends GetView<HomeController> {
         // top: false, // 상단 safearea 설정
         bottom: false, // 하단 safearea 설정
         child: WebViewComp(
-          initialUrl: 'https://flutter.dev',
+          initialUrl: controller.initialUrl,
           jsInterface: controller.jsInterface,
           // 로딩창
           onLoadWidget: Container(
