@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "dart-code.flutter",
+    "dart-code.dart-code",
+    "dzhavat.bracket-pair-toggler",
+    "oderwat.indent-rainbow"
+  ]
+}

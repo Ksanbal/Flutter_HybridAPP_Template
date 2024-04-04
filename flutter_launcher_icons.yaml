@@ -1,0 +1,12 @@
+# https://pub.dev/packages/flutter_launcher_icons
+
+flutter_launcher_icons:
+  image_path: "assets/app_icon_512.png"
+
+  # Android
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  android: "launcher_icon"
+
+  # iOS
+  ios: true
+  remove_alpha_ios: true

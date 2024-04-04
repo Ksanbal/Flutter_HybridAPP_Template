@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hybridapp_template/app.dart';
+import 'package:flutter_hybridapp_template/common/utiles/firebase.dart';
 
-void main() {
+void main() async {
+  // Firebase init 설정
+  // initFirebase();
+
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
-}
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  // FCM 설정
+  // setFCM();
 }
