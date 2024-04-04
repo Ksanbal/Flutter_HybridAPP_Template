@@ -3,7 +3,8 @@
 Flutter를 사용한 하이브리드앱 개발을 위한 템플릿입니다.
 
 - Versions
-  - flutter 3.19.5 (fvm 설정)
+  - Dart 3.3.3
+  - Flutter 3.19.5 (fvm 설정)
   - flutter_inappwebview 6.0.0
 
 ## FVM 설정
