@@ -1,4 +1,4 @@
-// Docs: https://inappwebview.dev/docs/5.x.x/intro
+// Docs: https://inappwebview.dev/docs/intro/
 
 import 'dart:developer';
 import 'dart:io';
@@ -59,7 +59,7 @@ class _WebViewCompState extends State<WebViewComp> {
     super.initState();
 
     pullToRefreshController = PullToRefreshController(
-      options: PullToRefreshOptions(
+      settings: PullToRefreshSettings(
         color: Colors.primaries.first,
       ),
       onRefresh: () async {
@@ -86,7 +86,7 @@ class _WebViewCompState extends State<WebViewComp> {
           InAppWebView(
             key: webViewKey,
             initialUrlRequest: URLRequest(
-              url: Uri.parse(widget.initialUrl),
+              url: WebUri.uri(Uri.parse(widget.initialUrl)),
             ),
             pullToRefreshController: pullToRefreshController,
             onWebViewCreated: (InAppWebViewController controller) {
@@ -104,8 +104,8 @@ class _WebViewCompState extends State<WebViewComp> {
               _isLoading.value = false;
             },
             // 로딩 에러 발생시
-            onLoadError: (controller, url, code, message) {
-              _log('onLoadError : [$code] $url, $message');
+            onReceivedError: (controller, request, error) {
+              _log('onLoadError : ${request.url}, ${error.description}');
               pullToRefreshController.endRefreshing();
             },
             // 콘솔 로그
@@ -130,38 +130,32 @@ class _WebViewCompState extends State<WebViewComp> {
 
               return NavigationActionPolicy.ALLOW;
             },
-            androidOnPermissionRequest: (controller, origin, resources) async {
-              return PermissionRequestResponse(
-                resources: resources,
-                action: PermissionRequestResponseAction.GRANT,
+            onPermissionRequest: (controller, permissionRequest) async {
+              return PermissionResponse(
+                resources: permissionRequest.resources,
+                action: PermissionResponseAction.GRANT,
               );
             },
-            initialOptions: InAppWebViewGroupOptions(
-              crossPlatform: InAppWebViewOptions(
-                javaScriptCanOpenWindowsAutomatically: true,
-                javaScriptEnabled: true,
-                useOnDownloadStart: true,
-                useOnLoadResource: true,
-                useShouldOverrideUrlLoading: true,
-                mediaPlaybackRequiresUserGesture: true,
-                allowFileAccessFromFileURLs: true,
-                allowUniversalAccessFromFileURLs: true,
-                supportZoom: false,
-                verticalScrollBarEnabled: true,
-                userAgent: widget.userAgent ?? "",
-              ),
-              android: AndroidInAppWebViewOptions(
-                useHybridComposition: true,
-                allowContentAccess: true,
-                builtInZoomControls: true,
-                thirdPartyCookiesEnabled: true,
-                allowFileAccess: true,
-                supportMultipleWindows: true,
-              ),
-              ios: IOSInAppWebViewOptions(
-                allowsInlineMediaPlayback: true,
-                allowsBackForwardNavigationGestures: true,
-              ),
+            initialSettings: InAppWebViewSettings(
+              javaScriptCanOpenWindowsAutomatically: true,
+              javaScriptEnabled: true,
+              useOnDownloadStart: true,
+              useOnLoadResource: true,
+              useShouldOverrideUrlLoading: true,
+              mediaPlaybackRequiresUserGesture: true,
+              allowFileAccessFromFileURLs: true,
+              allowUniversalAccessFromFileURLs: true,
+              supportZoom: false,
+              verticalScrollBarEnabled: true,
+              userAgent: widget.userAgent ?? "",
+              useHybridComposition: true,
+              allowContentAccess: true,
+              builtInZoomControls: true,
+              thirdPartyCookiesEnabled: true,
+              allowFileAccess: true,
+              supportMultipleWindows: true,
+              allowsInlineMediaPlayback: true,
+              allowsBackForwardNavigationGestures: true,
             ),
           ),
           // 로딩
