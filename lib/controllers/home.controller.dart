@@ -11,6 +11,8 @@ class HomeController extends GetxController {
       handlerName: 'eventHandler',
       callback: (args) {
         log(args.toString(), name: 'jsInterface');
+
+        return {};
       },
     );
   }
