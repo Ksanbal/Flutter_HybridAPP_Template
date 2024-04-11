@@ -31,7 +31,7 @@ Flutter를 사용한 하이브리드앱 개발을 위한 템플릿입니다.
 
 ### iOS
 
-- Xcode `Runner/General/Display Name`을 변경
+- `ios/Runner/Info.plist`에 `CFBundleDisplayName` 하단의 string 값 변경
 
 ## Splash Screen 변경
 
