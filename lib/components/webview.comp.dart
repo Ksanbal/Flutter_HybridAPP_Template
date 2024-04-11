@@ -97,6 +97,8 @@ class _WebViewCompState extends State<WebViewComp> {
                 widget.jsInterface!(webViewController);
               }
             },
+            // 버튼 클릭 잔상 제거
+            preventGestureDelay: true,
             // 로딩 종료
             onLoadStop: (controller, url) {
               _log('onLoadStop : $url');
