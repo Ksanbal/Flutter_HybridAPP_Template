@@ -13,18 +13,21 @@ class WebViewComp extends StatefulWidget {
   /// - [initialUrl] : 초기 URL [required]
   /// - [onLoadWidget] : 로딩시 보여줄 위젯
   /// - [userAgent] : 웹뷰의 UserAgent
+  /// - [applicationNameForUserAgent] : 웹뷰의 UserAgent 마지막에 추가할 앱 이름
   /// - [jsInterface] : 웹뷰의 자바스크립트 인터페이스
   const WebViewComp({
     super.key,
     required this.initialUrl,
     this.onLoadWidget,
     this.userAgent,
+    this.applicationNameForUserAgent,
     this.jsInterface,
   });
 
   final String initialUrl;
   final Widget? onLoadWidget;
   final String? userAgent;
+  final String? applicationNameForUserAgent;
   final Function(InAppWebViewController)? jsInterface;
 
   @override
@@ -158,6 +161,7 @@ class _WebViewCompState extends State<WebViewComp> {
               supportMultipleWindows: true,
               allowsInlineMediaPlayback: true,
               allowsBackForwardNavigationGestures: true,
+              applicationNameForUserAgent: widget.applicationNameForUserAgent ?? "",
             ),
           ),
           // 로딩
